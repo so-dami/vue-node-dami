@@ -37,6 +37,13 @@ export default new Vuex.Store({
         // {...객체1, ...객체2, ...객체3, ...}
         cityData: {...myD0, ...myD1},
 
+        // 변경되는 데이터는 state 구역에 외부변수를 할당하여
+        // 변경 시 가상돔에 반영하고 실제돔으로 연결되도록 등록해줌
+        // 같은 이름을 사용해도 무방함(구분되기 때문에)
+        myD0 : myD0,
+        myD1 : myD1,
+        myD2 : myD2,
+
         // 이미지정보 셋업변수
         imgsrc: "",
 
@@ -84,6 +91,10 @@ export default new Vuex.Store({
                     {...헐.myD0, ...헐.myD2};
                     console.log("뮤테 호출:",슉,헐.cityData);
 
+            // 메뉴 변경 시 인트로 화면으로 변경하기
+            헐.imgsrc = 헐.cityData.인트로.이미지;            
+            헐.desc = 헐.cityData.인트로.설명;            
+        
         }, // chgMenu //
         
     }, // mutations //
