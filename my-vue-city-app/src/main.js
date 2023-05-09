@@ -33,7 +33,7 @@ new Vue({
         // store.commit('initSet',"https://img.freepik.com/premium-vector/city-illustration_23-2147514701.jpg");
 
         // actioins 메서드 호출하기: dispatch("메서드명",전달값)
-        // store.dispatch("myAct","it's me")
+        store.dispatch("myAct","it's me")
         
     }, // created //
 

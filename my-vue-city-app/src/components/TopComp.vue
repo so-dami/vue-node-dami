@@ -5,15 +5,29 @@
 			<!-- 리액티브 데이터인 뷰엑스 스토어 cityData 변수를 컴포넌트 변수인 sdata에 할당하여 사용하면 처음에만 할당된 변수로 셋팅되고 cityData가 변경될 때 반영되지 않음 -->
 			<!-- 따라서 리액티브 데이터를 직접 해당 자리에 사용해야 함 -->
 			<!-- <li v-for="(v,i) in sdata" v-bind:key="i" v-if="i!='인트로'"> -->
-			<li v-for="(v,i) in this.$store.state.cityData" v-bind:key="i" v-if="i!='인트로'">
+			<li v-for="(v,i) in this.$store.state.cityData" v-bind:key="i" v-if="i !='인트로'">
 				<a href="#" v-on:click="chgData(i)">
 					{{i}}
 				</a>
 			</li>
 		</ul>
-		<!-- 메뉴 선택 이동 링크 -->
+		<!-- 메뉴 선택 이동 링
+			크 -->
 		<div class="m2">
-			<a href="#" v-on:click="chgMenu(num)" v-text="'메뉴'+num"></a>
+			<!-- 
+				[ v-on:이벤트명.prevent ]
+				
+				기본 기능 막기 옵션 .prevent는
+				event.preventDefault()와 같음
+
+				※ 참고 ※
+				[ v-on:이벤트명.stop ]
+
+				이벤트 버블링 막기 옵션 .stop은
+				event.stopPropagation()와 같음
+			-->
+
+			<a href="#" v-on:click.prevent="chgMenu(num)" v-text="'메뉴'+num"></a>
 		</div>
 	</header>
 </template>
@@ -70,24 +84,33 @@ export default {
 			console.log("jQ셋팅");
 			
 			// 링크 클릭시 a에 클래스 on주기
-			$(".gnb a").click(function(){
-				$(this).addClass("on")
-				.parent().siblings()
-				.find("a").removeClass("on");
+			$(".gnb a").click(function(e){
+				e.preventDefault();
+				$(this)
+					.addClass("on")
+					.parent()
+					.siblings()
+					.find("a")
+					.removeClass("on");
 
 				// 박스 애니
 				showBx();
+
 			}); // click //
 
 			function showBx(){
 				// 이미지와 설명박스 순서대로 나타나기
 				$("main img")
-				.css({opacity:0}).stop()
-				.delay(500).fadeTo(500,1);
+				.css({opacity:0})
+				.stop()
+				.delay(500)
+				.fadeTo(500,1);
 
 				$("main p")
-				.css({opacity:0}).stop()
-				.delay(1000).fadeTo(500,1);
+				.css({opacity:0})
+				.stop()
+				.delay(1000)
+				.fadeTo(500,1);
 			} // showBx //
 
 		}, // setJQ //
@@ -95,7 +118,12 @@ export default {
     }, // methods //
 
 	// DOM을 만들고 난 후
-	// 제이쿼리 메서드 호출
+	mounted(){
+
+		// 제이쿼리 메서드 호출
+		this.setJQ();
+		
+	} // mounted //
 	
 };
 </script>
@@ -104,17 +132,17 @@ export default {
 <style scoped>
 
 	.m2{
-	display: block;
-	text-align: right;
+		display: block;
+		text-align: right;
 	}
 	.m2 a{
-	font-size: 20px;
+		font-size: 20px;
 	}
 	.m2 a:hover{
-	text-decoration: underline;
-	text-decoration-style: double;
-	color: green;
-}
+		text-decoration: underline;
+		text-decoration-style: double;
+		color: green;
+	}
 
 	header {
 		padding: 15px;
