@@ -2,7 +2,8 @@ import Vue from "vue";
 import App from "./App";
 
 // 뷰엑스 스토어 JS 불러오기
-import store from "./store"
+import store from "./store";
+// import $ from "jquery";
 
 /* 뷰 인스턴스 생성하기 */
 new Vue({
@@ -35,4 +36,28 @@ new Vue({
         // store.dispatch("myAct","it's me")
         
     }, // created //
+
+    mounted(){
+        // 링크 클릭시 a에 클래스 on주기
+        // $(".gnb a").click(function(){
+        //     $(this).addClass("on")
+        //     .parent().siblings()
+        //     .find("a").removeClass("on");
+
+        //     // 박스 애니
+        //     showBx();
+        // }); ////////// click ///////////
+
+        // function showBx(){
+        //     // 이미지와 설명박스 순서대로 나타나기
+        //     $("main img")
+        //     .css({opacity:0}).stop()
+        //     .delay(500).fadeTo(500,1);
+
+        //     $("main p")
+        //     .css({opacity:0}).stop()
+        //     .delay(1000).fadeTo(500,1);
+        // } ////// showBx ////
+    } ////////// mounted //////
+
 });
