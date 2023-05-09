@@ -11,7 +11,7 @@ new Vue({
     store,
     components: { App },
     template: "<App/>",
-    created() {
+    created(){
 
         // 스토어에 있는 initSet 메서드는 어떻게 호출하지?
         // 스토어 호출 메서드가 따로 있음!

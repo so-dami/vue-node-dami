@@ -56,10 +56,10 @@ export default new Vuex.Store({
             // 파라미터가 객체일 경우(데이터다수일때!)
 
             // 이미지데이터 셋업
-            헐.imgsrc = 헐.cityData.myD0.이미지;
+            헐.imgsrc = 헐.cityData.인트로.이미지;
 
             // 설명데이터 셋업
-            헐.desc = 헐.cityData.myD0.설명;
+            헐.desc = 헐.cityData.인트로.설명;
             
         }, ////// initSet 메서드 /////
 
@@ -73,6 +73,18 @@ export default new Vuex.Store({
             헐.desc = 헐.cityData[슉].설명;
             
         }, // chgData //
+
+        // 메뉴 데이터 변경 메서드
+        chgMenu(헐,슉){
+        // 헐 - state 변수, 슉 - 전달값
+
+            헐.cityData = 
+                슉 ===1?
+                    {...헐.myD0, ...헐.myD1}:
+                    {...헐.myD0, ...헐.myD2};
+                    console.log("뮤테 호출:",슉,헐.cityData);
+
+        }, // chgMenu //
         
     }, // mutations //
 
